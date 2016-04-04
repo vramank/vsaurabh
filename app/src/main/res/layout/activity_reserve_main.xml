@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <include layout="@layout/app_bar_normal"/>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reserve a Charging Station"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:layout_marginTop="15sp"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RESERVATION for EV: "
+                    android:layout_marginTop="10sp"
+                    android:layout_marginLeft="10sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ford Focus "
+                    android:id="@+id/tv_carName"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginLeft="5sp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="site id: "
+
+                    android:layout_marginLeft="10sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="334 "
+                    android:id="@+id/tv_siteID"
+
+                    android:layout_marginLeft="5sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Owner: "
+
+                    android:layout_marginLeft="20sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Musee canadian de la nature "
+                    android:id="@+id/tv_owner"
+
+                    android:layout_marginLeft="5sp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="240 McLeod "
+                android:id="@+id/tv_address1"
+                android:layout_marginTop="5sp"
+                android:layout_marginLeft="10sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ottawa, ON, Canada, K2P 2R1"
+                android:id="@+id/tv_address2"
+                android:layout_marginTop="5sp"
+                android:layout_marginLeft="10sp"
+                />
+
+            <TabHost
+                android:id="@+id/tabhost"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TabWidget
+                        android:id="@android:id/tabs"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"></TabWidget>
+
+                    <FrameLayout
+                        android:id="@android:id/tabcontent"
+                        android:layout_width="match_parent"
+                        android:layout_height="235sp">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:id="@+id/tabTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="RESERVATION TIME"
+                                android:layout_marginTop="20sp"
+                                android:layout_marginLeft="10sp"
+                                android:textStyle="bold"
+                                />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Time Selected: "
+                                    android:layout_marginTop="20sp"
+                                    android:layout_marginLeft="60sp"
+                                    android:textStyle="bold"
+                                    />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/tvTimeSelected"
+                                    android:textColor="@color/colorAccent"
+                                    android:text=""
+                                    android:textSize="18sp"
+                                    android:layout_marginTop="20sp"
+                                    android:layout_marginLeft="10sp"
+                                    android:textStyle="bold"
+                                    />
+
+
+                            </LinearLayout>
+
+                            <ListView
+                                android:layout_marginLeft="10sp"
+                                android:layout_marginRight="10sp"
+                                android:layout_marginTop="10sp"
+                                android:layout_width="match_parent"
+                                android:layout_height="180dp"
+                                android:id="@+id/listTime"
+                                android:fadeScrollbars="false"
+                                android:choiceMode="singleChoice"
+                                android:listSelector="@drawable/listview_selector"
+                                android:background="@drawable/listview_background">
+
+                            </ListView>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:id="@+id/tabPort"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Charging Port"
+                                android:layout_marginTop="20sp"
+                                android:layout_marginLeft="10sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <RadioGroup
+                                android:layout_marginTop="10sp"
+                                android:layout_marginLeft="30sp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/rbLevel2"
+                                    android:text="Level 2, J1772, 6.6 kW"
+                                    android:checked="true"/>
+
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/fastDC"
+                                    android:text="FastDC: CHAdeMO"/>
+                            </RadioGroup>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:id="@+id/tabDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Reservation Date: "
+                                android:layout_marginTop="20sp"
+                                android:layout_marginLeft="10sp"
+                                android:textStyle="bold"
+                                />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_horizontal">
+
+
+
+                                <EditText
+                                    android:layout_marginTop="15sp"
+                                    android:layout_width="120sp"
+                                    android:layout_height="40sp"
+                                    android:layout_gravity="center_horizontal"
+                                    android:textColor="#a1a0a0"
+                                    android:text="00/00/00"
+                                    android:textAlignment="center"
+                                    android:id="@+id/etSelectDate"
+
+                                    android:editable="false"
+                                    />
+
+                                <Button
+                                    android:layout_width="30sp"
+                                    android:layout_height="30sp"
+                                    android:background="@drawable/icon_date"
+
+                                    android:id="@+id/btnSelectDate"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+
+
+
+
+                    </FrameLayout>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Next"
+                        android:id="@+id/btnNext1"
+                        android:background="@color/colorButton"
+                        android:layout_marginBottom="10sp"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="5sp"
+                        android:layout_gravity="center_horizontal" />
+                </LinearLayout>
+            </TabHost>
+
+
+        </LinearLayout>
+
+
+
+
+</LinearLayout>

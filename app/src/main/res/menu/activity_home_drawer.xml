@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <!--<item
+            android:id="@+id/nav_dash"
+            android:icon="@android:drawable/ic_menu_compass"
+            android:title="DASHBOARD"/>-->
+
+        <item
+
+            android:id="@+id/nav_charge"
+            android:icon="@android:drawable/ic_menu_compass"
+            android:title="Charging Stations"/>
+
+        <item
+            android:id="@+id/nav_myAccount"
+            android:icon="@android:drawable/ic_menu_camera"
+            android:title="My Account" />
+
+        <item
+            android:id="@+id/nav_reserve"
+            android:icon="@android:drawable/ic_menu_compass"
+            android:title="Reserve"/>
+
+        <item
+            android:id="@+id/nav_trip"
+            android:icon="@android:drawable/ic_menu_compass"
+            android:title="Trip Planner"/>
+
+        <item
+            android:id="@+id/nav_start_charging"
+            android:icon="@android:drawable/ic_menu_compass"
+            android:title="Start Charging"/>
+
+    </group>
+
+    <!--    <item android:title="Communicate">
+            <menu>
+                <item android:id="@+id/nav_share" android:icon="@android:drawable/ic_menu_share"
+                    android:title="Share" />
+                <item android:id="@+id/nav_send" android:icon="@android:drawable/ic_menu_send"
+                    android:title="Send" />
+            </menu>
+        </item>
+    -->
+
+</menu>

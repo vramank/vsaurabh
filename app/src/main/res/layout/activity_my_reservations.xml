@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.aidor.secchargemobile.seccharge.MyReservationsActivity">
+    <include layout="@layout/app_bar_normal"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:padding="5sp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Reservations"
+        android:layout_gravity="center_horizontal"
+        android:textSize = "25sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+
+        />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:fillViewport="true"
+            android:layout_marginTop="15sp"
+            android:background="@drawable/listview_background">
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5sp"
+                android:divider="@color/colorAccent"
+                android:dividerHeight="1sp"
+                android:id="@+id/listMyReservations">
+
+            </ListView>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+ Make New Reservation"
+                android:background="@color/colorButton"
+                android:textColor="@color/white"
+                android:layout_marginTop="15sp"
+                android:padding="5sp"
+                android:layout_marginLeft="5dp"
+                android:onClick="onMakeNewReservationClicked"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reservation History"
+                android:background="@color/colorButton"
+                android:textColor="@color/white"
+                android:layout_marginTop="15sp"
+                android:layout_marginLeft="10sp"
+                android:padding="5sp"
+                android:onClick="reservationHistoryClicked"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
