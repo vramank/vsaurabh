@@ -83,6 +83,7 @@
     <string name="title_activity_add_vehicle">Add Vehicle</string>
     <string name="title_activity_soc">State Of Charge</string>
     <string name="title_activity_payment_info">Payment Info</string>
+    <string name="title_activity_charge_now">ChargeNowActivity</string>
 
 
 </resources>

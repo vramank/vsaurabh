@@ -483,6 +483,11 @@ public class HomeActivity extends AppCompatActivity
                 }
             });
 
+        } else if (id == R.id.nav_charge_now) {
+            //  MapFragment mapFragment = new MapFragment();
+            startActivity(new Intent(HomeActivity.this, ChargeNowActivity.class));
+            // Intent i = new Intent(HomeActivity.this, HomeActivity.class);
+            //  startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
