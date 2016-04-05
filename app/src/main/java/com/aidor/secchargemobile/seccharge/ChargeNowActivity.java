@@ -3,13 +3,11 @@ package com.aidor.secchargemobile.seccharge;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.aidor.projects.seccharge.R;
 
 public class ChargeNowActivity extends AppCompatActivity {
-
+    MapFragmentNew mapFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +17,9 @@ public class ChargeNowActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        mapFragment = new MapFragmentNew();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, mapFragment).commit();
     }
 
 }

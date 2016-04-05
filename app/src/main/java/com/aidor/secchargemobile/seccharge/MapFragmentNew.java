@@ -89,8 +89,8 @@ public class MapFragmentNew extends SupportMapFragment implements GoogleMap.OnIn
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.new_map_fragment_layout, container, false);
-        Toolbar toolbar = (Toolbar) ((AppCompatActivity) getActivity()).findViewById(R.id.toolbar);
-        toolbar.findViewById(R.id.searchtoolbar).setVisibility(View.VISIBLE);
+//        Toolbar toolbar = (Toolbar) ((AppCompatActivity) getActivity()).findViewById(R.id.toolbar);
+//        toolbar.findViewById(R.id.searchtoolbar).setVisibility(View.VISIBLE);
         myDatabase = new SqlLiteDbHelper(getContext());
         csSiteModel = new CsSiteModel();
 
