@@ -47,4 +47,7 @@ public interface ReservationApi {
 
     @GET("/preauthorizedReservationId")
     void getReservationIdForCancelation(@Query("userid") String userId, Callback<Reservationdetail> callback);
+
+    @GET("/chargeNow/45.505/-73.566/12/17:44")
+    void getChargingStations(Callback<StartChargingModel> callback);
 }

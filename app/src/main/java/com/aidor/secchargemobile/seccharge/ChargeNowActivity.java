@@ -1,10 +1,23 @@
 package com.aidor.secchargemobile.seccharge;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import com.aidor.projects.seccharge.R;
+import com.aidor.secchargemobile.model.ServerTimeModel;
+import com.aidor.secchargemobile.model.StartChargingModel;
+import com.aidor.secchargemobile.rest.RestClientReservation;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class ChargeNowActivity extends AppCompatActivity {
     MapFragmentNew mapFragment;
@@ -15,6 +28,9 @@ public class ChargeNowActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charge_now);
+
+        GetServerTimeTask getServerTimeTask = new GetServerTimeTask();
+        getServerTimeTask.execute();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_normal);
         setSupportActionBar(toolbar);
@@ -28,6 +44,55 @@ public class ChargeNowActivity extends AppCompatActivity {
         bundle.putStringArray("markerId array", markerId);
         mapFragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, mapFragment).commit();
+    }
+
+    private class GetServerTimeTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            RestClientReservation.get().getChargingStations(new Callback<StartChargingModel>() {
+
+
+                @Override
+                public void success(final StartChargingModel startChargingModel, Response response) {
+
+                    if (startChargingModel.getNoReservation().equals("noReservation")){
+                        Log.d("Reservation", "No reservations");
+                    } else {
+
+                        if (Integer.parseInt(startChargingModel.getReservationid()) > 0) {
+                            RestClientReservation.get().getCurrentServerTime(new Callback<ServerTimeModel>() {
+
+                                @Override
+                                public void success(ServerTimeModel serverTimeModel, Response response) {
+
+
+                                }
+
+                                @Override
+                                public void failure(RetrofitError error) {
+                                    System.out.println("Failed to get timer task server time");
+                                }
+                            });
+                        }
+                    }
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    System.out.println("Failed to get timer task reservation details");
+                }
+            });
+
+
+            return null;
+        }
     }
 
 }
