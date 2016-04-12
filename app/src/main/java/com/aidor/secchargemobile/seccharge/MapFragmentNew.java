@@ -72,9 +72,9 @@ public class MapFragmentNew extends SupportMapFragment implements GoogleMap.OnIn
     String longitudePosition[] = {"-88.2556", "1"};
     String lattitudePosition[] = {"42.6727905", "1"};
     public String duration, addr1, siteType1, siteOwner1, postalCode1, province1, country1, siteNumber1, sitePhone1, level2Price1, fastDCPrice1, accessTypeTime1, usageType1;
-    double latArray[] = {45.412459, 45.41953};
-    double lngArray[] = {-75.68985, -75.6786};
-    String markerId[]={"324","489"};
+    double latArray[] = {45.412459, 45.41953, 37.775954};
+    double lngArray[] = {-75.68985, -75.6786, -122.455794};
+    String markerId[]={"324","489", "333", "444"};
     String markerIdSelected = "489";
     TextView tv1, tvAddress, tvSiteOwner, tvPostalCode, tvProvince, tvCountry, tvSiteNumber, tvSitePhone, tvLevel2Price, tvFastDCPrice, tvAccessTypeTime, tvSiteType, tvUsageType;
     Button addToRouteBtn,reserveBtn;
@@ -93,6 +93,14 @@ public class MapFragmentNew extends SupportMapFragment implements GoogleMap.OnIn
 //        toolbar.findViewById(R.id.searchtoolbar).setVisibility(View.VISIBLE);
         myDatabase = new SqlLiteDbHelper(getContext());
         csSiteModel = new CsSiteModel();
+
+        if (this.getArguments() != null) {
+            latArray = this.getArguments().getDoubleArray("lat array");
+            lngArray = this.getArguments().getDoubleArray("lng array");
+            markerId = this.getArguments().getStringArray("markerId array");
+            String helloo = "";
+        }
+
 
         mMap = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map)).getMap();
         gpsTracker = new GPSTracker(getActivity());
@@ -120,7 +128,7 @@ public class MapFragmentNew extends SupportMapFragment implements GoogleMap.OnIn
         });
         clusterManager.setRenderer(new OwnIconRendered(getContext(), mMap, clusterManager));
         clusterManager.getMarkerCollection().setOnInfoWindowAdapter(new MyCustomAdapterForItems());
-        for(int i = 0; i < 2; i++) {
+        for(int i = 0; i < latArray.length; i++) {
             addItems(latArray[i],lngArray[i],markerId[i]);
         }
         return view;
@@ -204,6 +212,7 @@ public class MapFragmentNew extends SupportMapFragment implements GoogleMap.OnIn
 
             if(isDataLoaded == false){
                 final LatLng destinationLatLng = clickClusterItem.getPosition();
+                final String markerId = clickClusterItem.getSnippet();
                 RestClientMap.get().getNewDuration(latt+","+lon,
                         destinationLatLng.latitude+","+destinationLatLng.longitude,
                         new Callback<DurationResult>() {
@@ -219,19 +228,25 @@ public class MapFragmentNew extends SupportMapFragment implements GoogleMap.OnIn
                                 String latCheck = latCheck1.toString();
                                 myDatabase.openDataBase();
                                 csSiteModel = new CsSiteModel();
-                                if (latCheck.equals("45.412459"))
-                                {
-                                    String markerId = "324";
+                                if (markerId != null) {
                                     markerIdSelected = markerId;
                                     csSiteModel = myDatabase.getCsSiteDetails(markerId);
                                     getDataForChargingSite(csSiteModel);
                                 }
-                                else{
-                                    String markerId = "489";
-                                    markerIdSelected = markerId;
-                                    csSiteModel = myDatabase.getCsSiteDetails(markerId);
-                                    getDataForChargingSite(csSiteModel);
-                                }
+
+//                                if (latCheck.equals("45.412459"))
+//                                {
+//                                    String markerId = "324";
+//                                    markerIdSelected = markerId;
+//                                    csSiteModel = myDatabase.getCsSiteDetails(markerId);
+//                                    getDataForChargingSite(csSiteModel);
+//                                }
+//                                else{
+//                                    String markerId = "489";
+//                                    markerIdSelected = markerId;
+//                                    csSiteModel = myDatabase.getCsSiteDetails(markerId);
+//                                    getDataForChargingSite(csSiteModel);
+//                                }
                                 myDatabase.close();
                                 isDataLoaded = true;
                                 selectedMarker.showInfoWindow();
