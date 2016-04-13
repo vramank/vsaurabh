@@ -83,6 +83,7 @@ public class MapFragmentNew extends SupportMapFragment implements GoogleMap.OnIn
     GPSTracker gpsTracker;
     ClusterManager<MyMapItems> clusterManager;
     MyMapItems clickClusterItem;
+    boolean isChargeNow = false;
     private View progressView;
     @Nullable
     @Override
@@ -98,6 +99,7 @@ public class MapFragmentNew extends SupportMapFragment implements GoogleMap.OnIn
             latArray = this.getArguments().getDoubleArray("lat array");
             lngArray = this.getArguments().getDoubleArray("lng array");
             markerId = this.getArguments().getStringArray("markerId array");
+            isChargeNow = this.getArguments().getBoolean("isChargeNow");
             String helloo = "";
         }
 
@@ -150,6 +152,7 @@ public class MapFragmentNew extends SupportMapFragment implements GoogleMap.OnIn
         intent.putExtra("USAGE_TYPE", usageType1);
         intent.putExtra("CAR_DURATION", duration);
         intent.putExtra("SITE_ID",markerIdSelected);
+        intent.putExtra("isChargeNow", isChargeNow);
         startActivity(intent);
     }
 

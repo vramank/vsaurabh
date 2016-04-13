@@ -29,11 +29,12 @@ public class DetailInfoActivity extends ActionBarActivity {
     public String siteId, addr1, siteType1, siteOwner1, postalCode1, province1, country1, siteNumber1, sitePhone1, level2Price1, fastDCPrice1, accessTypeTime1, usageType1;
     String[] preText = {"SiteType", "Site Owner",  "Site Number", "Site Phone", "Level 2 Price", "FastDC Price", "Access Type Time", "Usage Type"
     };
-
+    private boolean isChargeNow = false;
     public static String[] fetchedText;
     static Context context;
     private TextView tvProviderName, tvCompleteAddress, tvPostalCode;
     private Button btnViewMoreDetails;
+    private Button btnReserve;
     private ArrayList<String> listChargingStationInfo;
 
     private SecCharge myApp;
@@ -54,10 +55,12 @@ public class DetailInfoActivity extends ActionBarActivity {
         TextView siteOwnerDisplay = (TextView)findViewById(R.id.siteOwnerDisplaytv);
         TextView durationCar = (TextView)findViewById(R.id.blue_car_duration);
         ImageView carImage = (ImageView)findViewById(R.id.blue_car);
+        btnReserve = (Button)findViewById(R.id.btnReserve);
         this.setTitle("Map");
         carImage.setImageResource(R.drawable.carblue2);
         siteOwnerDisplay.setTextSize(30);
         siteOwnerDisplay.setTextColor(Color.WHITE);
+
 
         tvProviderName = (TextView) findViewById(R.id.tvProviderName);
         tvCompleteAddress = (TextView) findViewById(R.id.tvCompleteAddress);
@@ -77,6 +80,8 @@ public class DetailInfoActivity extends ActionBarActivity {
         accessTypeTime1 = getIntent().getExtras().getString("ACCESS_TYPE_TIME");
         usageType1 = getIntent().getExtras().getString("USAGE_TYPE");
         String duration = getIntent().getExtras().getString("CAR_DURATION");
+        isChargeNow = getIntent().getBooleanExtra("isChargeNow", false);
+        setButtonText();
         fetchedText = new String[]{ siteType1, siteOwner1, siteNumber1, sitePhone1, level2Price1, fastDCPrice1, accessTypeTime1, usageType1};
         durationCar.setText(duration);
         siteOwnerDisplay.setText(siteOwner1);
@@ -86,6 +91,14 @@ public class DetailInfoActivity extends ActionBarActivity {
         //InfoDetailAdapter adapter = new InfoDetailAdapter((Activity) DetailInfoActivity.context, preText, fetchedText);
 
 
+    }
+
+    private void setButtonText() {
+        if (isChargeNow) {
+            btnReserve.setText("Payment");
+        }else {
+            btnReserve.setText("Reserve");
+        }
     }
 
     @Override
@@ -134,9 +147,15 @@ public class DetailInfoActivity extends ActionBarActivity {
     }
 
     public void onReserveClicked(View view){
-        Intent intent = new Intent(DetailInfoActivity.this, ReserveMainActivity.class);
-        intent.putExtra("SITE_ID", siteId);
-        intent.putExtra("MODIFICATION_STATUS", "normalReservation");
-        startActivity(intent);
+        if (isChargeNow) {
+            Intent intent = new Intent(DetailInfoActivity.this, PaymentInfoActivity.class);
+            intent.putExtra("RESERVATION_ID", "");
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(DetailInfoActivity.this, ReserveMainActivity.class);
+            intent.putExtra("SITE_ID", siteId);
+            intent.putExtra("MODIFICATION_STATUS", "normalReservation");
+            startActivity(intent);
+        }
     }
 }

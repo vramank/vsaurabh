@@ -42,6 +42,7 @@ public class ChargeNowActivity extends AppCompatActivity {
         bundle.putDoubleArray("lat array",latArray);
         bundle.putDoubleArray("lng array",lngArray);
         bundle.putStringArray("markerId array", markerId);
+        bundle.putBoolean("isChargeNow", true);
         mapFragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, mapFragment).commit();
     }
